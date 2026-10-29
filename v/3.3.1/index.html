@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ie2XOESdlRdgdgE9aFXv0Hz9vnt2hLyqTtM+nHCXw8o=' 'sha256-R8+HEgHUx+d/lZyn+XRxL5Un+bTZ9Tg1CpuyoOw13B0=' 'sha256-F/0ZVS4mn6EnypS+lgny5YN9OdLmnA/xSYVJcx6a1+k=' 'sha256-l0KHXiJuOgw41mMUIU3RV7b901WtnogawGxFtBplUUc=' 'sha256-BqO+xCcC8l4Vpnffj72ZykCsVQ+VaGkMXvoL7W8aDpA=' 'sha256-YCsbro4it4oUWVlMzFA9MCH6If5LTw9b2q2AnlX+OF4=' 'sha256-4o7YqYy0GYCeyRXE8v6oSiq26IY7xFy2kQyhY9Kw3Iw=' 'sha256-4jodeJkcGaVg4AJxxQp3O0vSGHw0XCLsMmI4Mp1P+D0=' 'sha256-d1WSgXbDbq79kxZbBszxM8vXbgBoF6Tgx/05GsFcpbE=' 'sha256-3YKKN+ou5uV32IYuuuJNV3I4QbHWKmu7qXWwxORPog0=' 'sha256-bRe5d/CT/afOS/50o5PrYpbeTF2JWZBWfJnkLUvO3I0=' 'sha256-CBySOLJBBmy4I1kBskqsVIejWJHH78f2LRhLiZXKGnM=' 'sha256-6sAwem0MxD5aiBAfqWGoKANZjT1/WTvz0e3KxCoun7Y=' 'sha256-MmUBaXCmHCalG5v05vslvYccjcmbFT3Xd8KuL6ILj/w='; style-src 'unsafe-inline'; img-src 'self' data:; font-src data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ie2XOESdlRdgdgE9aFXv0Hz9vnt2hLyqTtM+nHCXw8o=' 'sha256-R8+HEgHUx+d/lZyn+XRxL5Un+bTZ9Tg1CpuyoOw13B0=' 'sha256-F/0ZVS4mn6EnypS+lgny5YN9OdLmnA/xSYVJcx6a1+k=' 'sha256-l0KHXiJuOgw41mMUIU3RV7b901WtnogawGxFtBplUUc=' 'sha256-BqO+xCcC8l4Vpnffj72ZykCsVQ+VaGkMXvoL7W8aDpA=' 'sha256-YCsbro4it4oUWVlMzFA9MCH6If5LTw9b2q2AnlX+OF4=' 'sha256-xqmQY5Fu9U3fAWOJi4/qzSKTb+mklbLpgO4J8oLvj/Q=' 'sha256-4jodeJkcGaVg4AJxxQp3O0vSGHw0XCLsMmI4Mp1P+D0=' 'sha256-d1WSgXbDbq79kxZbBszxM8vXbgBoF6Tgx/05GsFcpbE=' 'sha256-QjzSHHDr53dHGzhT0LMzNTxO/w3LCH1OyjtC4HH01f0=' 'sha256-bRe5d/CT/afOS/50o5PrYpbeTF2JWZBWfJnkLUvO3I0=' 'sha256-CBySOLJBBmy4I1kBskqsVIejWJHH78f2LRhLiZXKGnM=' 'sha256-6sAwem0MxD5aiBAfqWGoKANZjT1/WTvz0e3KxCoun7Y=' 'sha256-MmUBaXCmHCalG5v05vslvYccjcmbFT3Xd8KuL6ILj/w='; style-src 'unsafe-inline'; img-src 'self' data:; font-src data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
   <meta name="robots" content="noindex, nofollow">
   <title>Indião da Sorte · Rifas</title>
@@ -4586,8 +4586,8 @@ const Cockpit = {
   naBase(d) { return d.base.tipo === 'pct' ? 'com ' + d.base.curto + ' vendido' : d.base.na; },
 
   /**
-   * Quem pagou os custos (3.3.1): cada custo já pago e quem pagou, com o total de cada parte, que volta para ela no acerto
-   * antes da divisão do resultado. Tocar num custo lançado à mão abre "Quem pagou" (uma parte ou as duas, com quanto cada uma
+   * Quem pagou os custos (3.3.1): cada custo já pago e quem pagou, com o total de cada parte, que volta para ela no acerto,
+   * no fim da apuração. Tocar num custo lançado à mão abre "Quem pagou" (uma parte ou as duas, com quanto cada uma
    * pagou); num prêmio, troca quem pagou; num pagamento de comissão ou disparo, abre o lançamento. Os automáticos (taxa da
    * plataforma, comissões, IR) vêm somados por categoria. Os totais são os mesmos da "Devolução do que pagou" do acerto.
    */
@@ -4660,8 +4660,9 @@ const Cockpit = {
     return h('.cartao', h('.cabeca', h('h2', 'Quem pagou os custos'), lancar),
       vazio ? h('p.suave', { style: { margin: 0 } }, 'Nenhum custo pago ainda nesta campanha.') : [
         h('dl.valores', h('dt', 'Pago pela ' + ind), h('dd', F.moeda(tot.indiao)), h('dt', 'Pago pela ' + pri), h('dd', F.moeda(tot.prime))),
-        h('p.suave.pequeno', { style: { margin: '10px 0 6px' } }, 'O que cada parte pagou volta por inteiro para ela no acerto, antes da divisão do resultado ' +
-          '(aba Relatório). Toque num custo para dizer quem pagou e quanto: uma parte ou as duas.'),
+        h('p.suave.pequeno', { style: { margin: '10px 0 6px' } }, 'No acerto, feito no fim da apuração, o que cada parte pagou volta para ela; como os custos ' +
+          'saem do resultado antes da divisão, cada parte acaba arcando com a sua porcentagem de cada custo (aba Relatório). Toque num custo para ' +
+          'dizer quem pagou e quanto: uma parte ou as duas.'),
         h('ul.lista.dentro', itens.map(linha).concat(somados))]);
   },
 
@@ -5047,6 +5048,7 @@ const Cockpit = {
    */
   relPartes(d) {
     const p = d.posicao, partes = App.sessao.partes, encerrada = d.campanha.status === 'Encerrada';
+    const div = Math.round((Number(p.pctIndiao) || 0) * 100) + '/' + Math.round((Number(p.pctPrime) || 0) * 100);
     const s = Number(p.saldoIndiao) || 0, quites = Math.abs(s) < 0.005;
     const deve = s > 0 ? partes.prime : partes.indiao, recebe = s > 0 ? partes.indiao : partes.prime;
     const frase = encerrada
@@ -5070,9 +5072,10 @@ const Cockpit = {
         { titulo: partes.prime + ' (' + F.pct(p.pctPrime, 0) + ')', dir: true, valor: (x) => x.fim ? h('strong.num', acerto(x.prime)) : valor(x, x.prime) }
       ], linhas, { classeLinha: (x) => x.fim ? 'total' : '' }),
       // A mesma nota do PDF (Distribuicao.notaConta).
-      h('p.suave.pequeno', { style: { margin: 0 } }, 'Pela regra da parceria, quem pagou um custo recebe o valor inteiro de volta, antes da divisão do resultado; o resultado ' +
-        '(as vendas menos todos os custos) é dividido pela participação. Assim cada parte arca com a sua porcentagem de cada custo, seja quem for que pagou. ' +
-        'O quadro "Quem custeou e quanto cabia a cada parte", logo abaixo, mostra isso custo a custo e chega no mesmo acerto.'),
+      h('p.suave.pequeno', { style: { margin: 0 } }, 'O acerto é feito no fim da apuração: cada parte recebe de volta o que pagou (custos e aportes), desconta o dinheiro da ' +
+        'campanha que já está com ela e fica com a sua parte do resultado (as vendas menos todos os custos). Como os custos saem do ' +
+        'resultado antes da divisão, cada parte acaba arcando com a sua parte de cada custo (' + div + '), seja quem for que pagou. O quadro ' +
+        '"Quem custeou e quanto cabia a cada parte", logo abaixo, faz a conta custo a custo, pelos ' + div + ', e chega no mesmo acerto.'),
       Cockpit.relCusteio(d), Cockpit.relQuemPagou(d.custosPorParte));
   },
 
@@ -5875,7 +5878,7 @@ const TelaCaixa = {
     return h('.cartao',
       h('.cabeca', h('.titulo', h('h2', 'Aportes'), h('.sub', a.nome + (c ? ' · ' + c.status.toLowerCase() : '')))),
       h('p.suave.pequeno', { style: { marginBottom: 0 } }, 'Custos de ' + F.moeda(a.necessidade, { semCentavos: true }) + ' pelo orçamento (sem a plataforma e as comissões, que saem das vendas) e ' +
-        F.moeda(a.custosPagos, { semCentavos: true }) + ' já pagos. Cada parte banca a sua porcentagem; quem bancou a mais recebe a diferença de volta antes da divisão do resultado.'),
+        F.moeda(a.custosPagos, { semCentavos: true }) + ' já pagos. Cada parte banca a sua porcentagem; quem bancou a mais recebe a diferença de volta no acerto, no fim da apuração.'),
       h('.tabela-rolagem', h('table.tabela.aportes',
         h('thead', h('tr', h('th', h('span.so-leitor', 'Valor')), linhas.map((x) => h('th.d', x.curto + ' · ' + F.pct(x.pctAporte, 0))))),
         h('tbody',
@@ -6088,7 +6091,7 @@ const TelaCaixa = {
       pagamento: 'Pagamento de uma comissão ou de um disparo que estava comprometido.'
     }[l.classe] || (transferencia ? 'Transferência entre as partes: o dinheiro só troca de mão, então o saldo do livro não muda. Entra no acerto da campanha.'
       : l.divisao ? 'Custo pago pelas duas partes: são duas linhas no Livro caixa, uma de cada parte, e esta é a da ' + TelaCaixa.curto(l.parte) +
-        '. No acerto, cada parte recebe de volta o que pagou, antes da divisão do resultado.' : null);
+        '. No acerto, no fim da apuração, cada parte recebe de volta o que pagou; como o custo sai do resultado, cada uma arca com a sua porcentagem dele.' : null);
     const corpo = [
       h('p', { style: { fontSize: '1.05rem', margin: 0 } }, h('strong', l.descricao || l.categoria)),
       h('dl.valores', linhas.map((x) => [h('dt', x[0]), h('dd', x[1])])),
@@ -6269,7 +6272,7 @@ const TelaCaixa = {
     const dica = h('p.suave.pequeno', { style: { margin: 0 } });
     const comprovante = TelaCaixa.campoComprovante();
     const ind = TelaCaixa.curto(partes.indiao);
-    const textosPago = { rotulo: 'Quem pagou', dica: 'O que a ' + ind + ' pagou conta como aporte dela e volta para ela no acerto, antes da divisão do resultado.' };
+    const textosPago = { rotulo: 'Quem pagou', dica: 'O que a ' + ind + ' pagou volta para ela no acerto, no fim da apuração; como o custo sai do resultado, cada parte arca com a sua porcentagem dele.' };
     const textosAPagar = { rotulo: 'Quem vai pagar', dica: 'Dá para dividir entre as partes quando o pagamento for registrado.' };
     let valorCampo = null;
     const quem = saida ? TelaCaixa.campoQuemPagou(partes, { dividir: true, total: () => valorCampo ? valorCampo.value : 0, dica: textosPago.dica }) : null;
@@ -6472,7 +6475,7 @@ const TelaCaixa = {
     let valorCampo = null;
     const quem = entrada ? null : TelaCaixa.campoQuemPagou(partes, { valor: l.parte, dividir: l.classe === 'manual',
       total: () => valorCampo ? valorCampo.value : l.valor,
-      dica: 'O que a ' + TelaCaixa.curto(partes.indiao) + ' pagou conta como aporte dela e volta para ela no acerto.' });
+      dica: 'O que a ' + TelaCaixa.curto(partes.indiao) + ' pagou volta para ela no acerto, no fim da apuração; como o custo sai do resultado, cada parte arca com a sua porcentagem dele.' });
     const x = TelaCaixa.folhaForm(entrada ? 'Registrar recebimento' : 'Registrar pagamento', [
       h('p', { style: { margin: 0 } }, h('strong', l.descricao), h('span.suave', ' · ' + F.moeda(l.valor) + ' comprometido')),
       h('.grade.duas',
@@ -6557,7 +6560,7 @@ const TelaCaixa = {
     const dv = l.divisao;
     const total = dv ? dv.total : l.valor;
     const quem = TelaCaixa.campoQuemPagou(partes, { valor: l.parte, valorIndiao: dv ? dv.indiao : '', dividir: true, total: () => total,
-      dica: 'O que a ' + TelaCaixa.curto(partes.indiao) + ' pagou conta como aporte dela e volta para ela no acerto, antes da divisão do resultado.' });
+      dica: 'O que a ' + TelaCaixa.curto(partes.indiao) + ' pagou volta para ela no acerto, no fim da apuração; como o custo sai do resultado, cada parte arca com a sua porcentagem dele.' });
     const x = TelaCaixa.folhaForm('Quem pagou', [
       h('p', { style: { margin: 0 } }, h('strong', l.descricao || l.categoria), h('span.suave', ' · ' + F.moeda(total) + ' · ' + F.data(l.data))),
       h('.grade.duas', quem.escolha, quem.quanto)
@@ -6577,7 +6580,7 @@ const TelaCaixa = {
     const sim = await Comp.confirmar({
       titulo: 'Mudar quem pagou o prêmio?',
       texto: 'O prêmio (' + String(l.descricao || '').replace(/^Prêmio pago: /, '') + ', ' + F.moeda(l.valor) + ') passa a ser pago pela ' + nova + '.' +
-        (nova === partes.indiao ? ' Ele conta como aporte da ' + TelaCaixa.curto(partes.indiao) + ' e volta para ela no acerto, antes da divisão do resultado.' : '') +
+        (nova === partes.indiao ? ' Ele volta para a ' + TelaCaixa.curto(partes.indiao) + ' no acerto, no fim da apuração; como sai do resultado, cada parte arca com a sua porcentagem dele.' : '') +
         ' O IR, se houver, continua com a ' + TelaCaixa.curto(partes.prime) + ', que recolhe o DARF.',
       botao: 'Pago pela ' + TelaCaixa.curto(nova)
     });
