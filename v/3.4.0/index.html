@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-MZMlL74CVqAqZnEZM/yN3QwSPJaCjEIcJiVUdrx8dwk=' 'sha256-9z4+tnSOoNkpVIogK0btGKAswOrsIIlyolPLc03q1LY=' 'sha256-F/0ZVS4mn6EnypS+lgny5YN9OdLmnA/xSYVJcx6a1+k=' 'sha256-l0KHXiJuOgw41mMUIU3RV7b901WtnogawGxFtBplUUc=' 'sha256-BqO+xCcC8l4Vpnffj72ZykCsVQ+VaGkMXvoL7W8aDpA=' 'sha256-YCsbro4it4oUWVlMzFA9MCH6If5LTw9b2q2AnlX+OF4=' 'sha256-qHcBL7vBNgxVHurS3fGgfEwsrzNgD9Bwmax8N9BkkZo=' 'sha256-4jodeJkcGaVg4AJxxQp3O0vSGHw0XCLsMmI4Mp1P+D0=' 'sha256-d1WSgXbDbq79kxZbBszxM8vXbgBoF6Tgx/05GsFcpbE=' 'sha256-AU61DmdvisRSo9nHlr4NrqhxPBEJne13E0O1mBAvXyI=' 'sha256-KxbmJASDiF3+uJNL7/G6mkRVDch82JPr1OjhQ89f8DA=' 'sha256-CBySOLJBBmy4I1kBskqsVIejWJHH78f2LRhLiZXKGnM=' 'sha256-6sAwem0MxD5aiBAfqWGoKANZjT1/WTvz0e3KxCoun7Y=' 'sha256-MmUBaXCmHCalG5v05vslvYccjcmbFT3Xd8KuL6ILj/w='; style-src 'unsafe-inline'; img-src 'self' data:; font-src data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-MZMlL74CVqAqZnEZM/yN3QwSPJaCjEIcJiVUdrx8dwk=' 'sha256-9z4+tnSOoNkpVIogK0btGKAswOrsIIlyolPLc03q1LY=' 'sha256-F/0ZVS4mn6EnypS+lgny5YN9OdLmnA/xSYVJcx6a1+k=' 'sha256-l0KHXiJuOgw41mMUIU3RV7b901WtnogawGxFtBplUUc=' 'sha256-BqO+xCcC8l4Vpnffj72ZykCsVQ+VaGkMXvoL7W8aDpA=' 'sha256-YCsbro4it4oUWVlMzFA9MCH6If5LTw9b2q2AnlX+OF4=' 'sha256-YN+KvWoiK9LfKRnCQW3JDt8ZtO/77V1Rbnwo+euKpNo=' 'sha256-4jodeJkcGaVg4AJxxQp3O0vSGHw0XCLsMmI4Mp1P+D0=' 'sha256-d1WSgXbDbq79kxZbBszxM8vXbgBoF6Tgx/05GsFcpbE=' 'sha256-AU61DmdvisRSo9nHlr4NrqhxPBEJne13E0O1mBAvXyI=' 'sha256-KxbmJASDiF3+uJNL7/G6mkRVDch82JPr1OjhQ89f8DA=' 'sha256-CBySOLJBBmy4I1kBskqsVIejWJHH78f2LRhLiZXKGnM=' 'sha256-6sAwem0MxD5aiBAfqWGoKANZjT1/WTvz0e3KxCoun7Y=' 'sha256-MmUBaXCmHCalG5v05vslvYccjcmbFT3Xd8KuL6ILj/w='; style-src 'unsafe-inline'; img-src 'self' data:; font-src data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
   <meta name="robots" content="noindex, nofollow">
   <title>Indião da Sorte · Rifas</title>
@@ -444,6 +444,10 @@
   .tabela tr.clicavel.total { cursor: default; }
   .tabela tr.clicavel.total:hover td { background: none; }
   .tabela tr.apagada td { color: var(--texto-3); }
+  /* Histórico: embaixo do resultado, quanto ficou com cada parte, e o aviso de resultado parcial. */
+  .res-partes { font-size: .78rem; font-weight: 500; line-height: 1.4; margin-top: 3px; white-space: nowrap; }
+  .tabela tr.total td .res-partes { font-weight: 600; }
+  .res-aberto { margin-top: 4px; }
   @media (max-width: 699px) {
     table.tabela.empilha thead { display: none; }
     table.tabela.empilha, .tabela.empilha tbody, .tabela.empilha tr, .tabela.empilha td { display: block; width: 100%; }
@@ -5275,14 +5279,21 @@ const TelaHistorico = {
       kpis.push(Comp.kpi(x[1], F.moeda(g.faturamento, { compacto: true }), F.plural(g.campanhas, 'sorteio', 'sorteios') + ' · resultado ' +
         F.moeda(g.resultado, { compacto: true }) + (F.vazio(g.margem) ? '' : ' (' + F.pct(g.margem) + ')')));
     });
+    // O que cada parte absorveu do resultado dos encerrados (nos sorteios com a Company, tudo da Indião).
+    const pe = t.encerradas.partes;
+    if (t.encerradas.campanhas && pe) {
+      kpis.push(Comp.kpi('Ficou com a ' + TelaCaixa.curto(App.sessao.partes.indiao), F.moeda(pe.indiao, { compacto: true }),
+        t.prime.campanhas ? 'a ' + TelaCaixa.curto(App.sessao.partes.prime) + ' ficou com ' + F.moeda(pe.prime, { compacto: true }) : 'o resultado todo', F.cls(pe.indiao)));
+    }
     const noAr = d.campanhas.some((c) => c.status === 'Ativa');
     ctx.mostrar([
       h('.kpis', kpis),
       h('.cartao', h('h2', 'Faturamento por sorteio'), Grafico.historico(d.campanhas)),
       h('.cartao', h('h2', 'Sorteio a sorteio'), TelaHistorico.tabela(d),
         h('p.suave.pequeno', { style: { margin: '10px 0 0' } }, 'Resultado antes do Simples, com os custos pagos e os que faltam pagar; margem é o resultado sobre o faturamento. ' +
-          'Nos sorteios com a Company, o resultado é todo da ' + TelaCaixa.curto(App.sessao.partes.indiao) + '.' +
-          (noAr ? ' A campanha no ar entra com o que vendeu até hoje, fora dos totais.' : '')))
+          'Embaixo do resultado, quanto ficou com cada parte pela participação no sorteio; nos sorteios com a Company, o resultado é todo da ' +
+          TelaCaixa.curto(App.sessao.partes.indiao) + '.' +
+          (noAr ? ' Em andamento: o resultado é parcial (o que vendeu até hoje menos os custos já lançados) e muda até o encerramento; fica fora dos totais.' : '')))
     ]);
   },
 
@@ -5297,18 +5308,20 @@ const TelaHistorico = {
     const t = d.totais, pri = TelaCaixa.curto(App.sessao.partes.prime);
     const totais = [['Total com a Company', t.company], ['Total com a ' + pri, t.prime], ['Total dos encerrados', t.encerradas]]
       .filter((x, i, todos) => x[1].campanhas && (i < 2 || (todos[0][1].campanhas && todos[1][1].campanhas)))
-      .map((x) => Object.assign({ total: true, nome: x[0] }, x[1]));
+      .map((x) => Object.assign({ total: true, nome: x[0], company: x[1] === t.company }, x[1]));
     const num = (v, fmt) => F.vazio(v) ? '–' : h('span.num', fmt(v));
     const ehTotal = (l) => !!l.total;
     const colunas = [
       { titulo: 'Sorteio', valor: (l) => ehTotal(l) ? h('strong', l.nome) : [h('div', l.nome),
-        h('div.suave.pequeno', [TelaHistorico.periodo(l), l.company ? 'com a Company' : l.status === 'Ativa' ? 'no ar' : null].filter(Boolean).join(' · '))] },
+        h('div.suave.pequeno', [TelaHistorico.periodo(l), l.company ? 'com a Company' : l.status === 'Ativa' ? 'em andamento' : null].filter(Boolean).join(' · '))] },
       { titulo: 'Dias', dir: true, valor: (l) => ehTotal(l) ? '–' : num(l.diasVenda, F.int) },
       { titulo: 'Faturamento', dir: true, valor: (l) => num(l.faturamento, (v) => F.moeda(v)) },
       { titulo: 'Média por dia', dir: true, valor: (l) => ehTotal(l) ? '–' : num(l.mediaDia, (v) => F.moeda(v, { semCentavos: true })) },
       { titulo: 'Pedidos', dir: true, valor: (l) => ehTotal(l) ? '–' : num(l.pedidos, F.int) },
       { titulo: 'Tíquete médio', dir: true, valor: (l) => ehTotal(l) ? '–' : num(l.ticket, (v) => F.moeda(v)) },
-      { titulo: 'Resultado', dir: true, valor: (l) => Cockpit.relValor(l.resultado) },
+      { titulo: 'Resultado', dir: true, valor: (l) => [Cockpit.relValor(l.resultado),
+        l.status === 'Ativa' ? h('div.res-aberto', h('span.chip.amarelo', { title: 'O resultado é parcial e muda até o encerramento' }, 'Em andamento')) : null,
+        TelaHistorico.partes(l)] },
       { titulo: 'Margem', dir: true, valor: (l) => F.vazio(l.margem) ? '–' : h('span.num' + (l.margem < 0 ? '.neg' : ''), F.pct(l.margem)) }
     ];
     const tabela = Comp.tabela(colunas, d.campanhas.concat(totais), {
@@ -5316,6 +5329,22 @@ const TelaHistorico = {
       clicavel: (l) => { if (!ehTotal(l)) App.ir('campanha/' + encodeURIComponent(l.id)); }
     });
     return Cockpit.relCompacta(tabela);
+  },
+
+  /**
+   * Embaixo do resultado, quanto ficou com cada parte: "Indião 60% −R$ 36.944,50" e "Prime 40% −R$ 24.629,66".
+   * Nos sorteios com a Company (e no total deles), "todo da Indião". Nos totais, sem o percentual: ele pode mudar de um sorteio para outro.
+   */
+  partes(l) {
+    const p = l.partes;
+    if (!p) return null;
+    const ind = TelaCaixa.curto(App.sessao.partes.indiao), pri = TelaCaixa.curto(App.sessao.partes.prime);
+    if (l.company || (!l.total && !p.prime.pct)) return h('div.res-partes.suave', 'todo da ' + ind);
+    // Nas linhas, { pct, valor }; nos totais, só o valor.
+    return h('div.res-partes', [['indiao', ind], ['prime', pri]].map((x) => {
+      const v = p[x[0]];
+      return h('div', h('span.suave', x[1] + (l.total ? '' : ' ' + F.pct(v.pct, 0)) + ' '), Cockpit.relValor(l.total ? v : v.valor));
+    }));
   },
 
   /**
@@ -5420,7 +5449,9 @@ Grafico.historico = function (lista) {
       const altura = Math.max(1, topo + alt - y(fat));
       const g = s('g');
       g.appendChild(s('title', null, [c.nome, TelaHistorico.periodo(c), 'Faturamento ' + F.moeda(fat), 'Resultado ' + F.moeda(c.resultado),
-        c.company ? 'Com a Company' : c.status === 'Ativa' ? 'No ar: até hoje' : null].filter(Boolean).join('\n')));
+        c.company ? 'Com a Company: todo da ' + TelaCaixa.curto(App.sessao.partes.indiao)
+          : c.partes ? TelaCaixa.curto(App.sessao.partes.indiao) + ' ' + F.moeda(c.partes.indiao.valor) + ' · ' + TelaCaixa.curto(App.sessao.partes.prime) + ' ' + F.moeda(c.partes.prime.valor) : null,
+        c.status === 'Ativa' ? 'Em andamento: até hoje' : null].filter(Boolean).join('\n')));
       g.appendChild(s('rect', { x: x, y: topo + alt - altura, width: barra, height: altura, rx: 2,
         class: 'barra-venda' + (c.company ? ' company' : '') + (c.status === 'Ativa' ? ' parcial' : '') }));
       g.appendChild(s('text', { x: x + barra / 2, y: Math.max(11, topo + alt - altura - 5), 'text-anchor': 'middle', class: 'valor',
@@ -5436,7 +5467,7 @@ Grafico.historico = function (lista) {
   const legenda = [];
   if (lista.some((c) => c.company)) legenda.push(h('span', h('i', { style: { background: 'var(--info)' } }), 'com a Company'));
   if (lista.some((c) => !c.company)) legenda.push(h('span', h('i', { style: { background: 'var(--ouro)' } }), 'com a ' + TelaCaixa.curto(App.sessao.partes.prime)));
-  if (lista.some((c) => c.status === 'Ativa')) legenda.push(h('span', h('i.parcial'), 'no ar (até hoje)'));
+  if (lista.some((c) => c.status === 'Ativa')) legenda.push(h('span', h('i.parcial'), 'em andamento (até hoje)'));
   return h('div', caixa, h('.legenda', { style: { marginTop: '8px' } }, legenda));
 };
 </script>
