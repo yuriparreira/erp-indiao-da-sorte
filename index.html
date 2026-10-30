@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-c1IxC7KAoXhthopLkvGU7MqNFQ2sj7fEEzy8SQ4ko8c=' 'sha256-R8+HEgHUx+d/lZyn+XRxL5Un+bTZ9Tg1CpuyoOw13B0=' 'sha256-F/0ZVS4mn6EnypS+lgny5YN9OdLmnA/xSYVJcx6a1+k=' 'sha256-l0KHXiJuOgw41mMUIU3RV7b901WtnogawGxFtBplUUc=' 'sha256-BqO+xCcC8l4Vpnffj72ZykCsVQ+VaGkMXvoL7W8aDpA=' 'sha256-YCsbro4it4oUWVlMzFA9MCH6If5LTw9b2q2AnlX+OF4=' 'sha256-xqmQY5Fu9U3fAWOJi4/qzSKTb+mklbLpgO4J8oLvj/Q=' 'sha256-4jodeJkcGaVg4AJxxQp3O0vSGHw0XCLsMmI4Mp1P+D0=' 'sha256-d1WSgXbDbq79kxZbBszxM8vXbgBoF6Tgx/05GsFcpbE=' 'sha256-QjzSHHDr53dHGzhT0LMzNTxO/w3LCH1OyjtC4HH01f0=' 'sha256-bRe5d/CT/afOS/50o5PrYpbeTF2JWZBWfJnkLUvO3I0=' 'sha256-CBySOLJBBmy4I1kBskqsVIejWJHH78f2LRhLiZXKGnM=' 'sha256-6sAwem0MxD5aiBAfqWGoKANZjT1/WTvz0e3KxCoun7Y=' 'sha256-MmUBaXCmHCalG5v05vslvYccjcmbFT3Xd8KuL6ILj/w='; style-src 'unsafe-inline'; img-src 'self' data:; font-src data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-MZMlL74CVqAqZnEZM/yN3QwSPJaCjEIcJiVUdrx8dwk=' 'sha256-9z4+tnSOoNkpVIogK0btGKAswOrsIIlyolPLc03q1LY=' 'sha256-F/0ZVS4mn6EnypS+lgny5YN9OdLmnA/xSYVJcx6a1+k=' 'sha256-l0KHXiJuOgw41mMUIU3RV7b901WtnogawGxFtBplUUc=' 'sha256-BqO+xCcC8l4Vpnffj72ZykCsVQ+VaGkMXvoL7W8aDpA=' 'sha256-YCsbro4it4oUWVlMzFA9MCH6If5LTw9b2q2AnlX+OF4=' 'sha256-qHcBL7vBNgxVHurS3fGgfEwsrzNgD9Bwmax8N9BkkZo=' 'sha256-4jodeJkcGaVg4AJxxQp3O0vSGHw0XCLsMmI4Mp1P+D0=' 'sha256-d1WSgXbDbq79kxZbBszxM8vXbgBoF6Tgx/05GsFcpbE=' 'sha256-AU61DmdvisRSo9nHlr4NrqhxPBEJne13E0O1mBAvXyI=' 'sha256-KxbmJASDiF3+uJNL7/G6mkRVDch82JPr1OjhQ89f8DA=' 'sha256-CBySOLJBBmy4I1kBskqsVIejWJHH78f2LRhLiZXKGnM=' 'sha256-6sAwem0MxD5aiBAfqWGoKANZjT1/WTvz0e3KxCoun7Y=' 'sha256-MmUBaXCmHCalG5v05vslvYccjcmbFT3Xd8KuL6ILj/w='; style-src 'unsafe-inline'; img-src 'self' data:; font-src data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
   <meta name="robots" content="noindex, nofollow">
   <title>Indião da Sorte · Rifas</title>
@@ -18,7 +18,7 @@
   <script>
   if (location.protocol === "http:" && !/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) { location.replace("https:" + location.href.slice(5)); }
   if (window.top !== window.self) { document.documentElement.style.display = "none"; window.top.location = window.self.location.href; }
-  window.RIFAS_SITE = { servidor: "https://script.google.com/macros/s/AKfycbxhVsW8OH1UcMGyl_uiIM51VITpjx4m9JqVktsGFJWiGRxG5w-mGh8xHv9uH1LAbe8/exec", versao: "3.3.1", raiz: (function () {
+  window.RIFAS_SITE = { servidor: "https://script.google.com/macros/s/AKfycbxhVsW8OH1UcMGyl_uiIM51VITpjx4m9JqVktsGFJWiGRxG5w-mGh8xHv9uH1LAbe8/exec", versao: "3.4.0", raiz: (function () {
     var p = location.pathname, i = p.indexOf("/v/");
     return i >= 0 ? p.slice(0, i + 1) : p.replace(/[^\/]*$/, "");
   })() };
@@ -441,6 +441,9 @@
   .tabela tr.clicavel { cursor: pointer; }
   .tabela tr.clicavel:hover td { background: var(--superficie-2); }
   .tabela tr.clicavel:focus-visible { outline: 2px solid var(--primaria); outline-offset: -2px; }
+  .tabela tr.clicavel.total { cursor: default; }
+  .tabela tr.clicavel.total:hover td { background: none; }
+  .tabela tr.apagada td { color: var(--texto-3); }
   @media (max-width: 699px) {
     table.tabela.empilha thead { display: none; }
     table.tabela.empilha, .tabela.empilha tbody, .tabela.empilha tr, .tabela.empilha td { display: block; width: 100%; }
@@ -574,6 +577,8 @@
   .grafico .barra-venda { fill: var(--ouro); }
   .grafico .barra-venda.fraca { fill: color-mix(in srgb, var(--ouro) 45%, var(--superficie)); }
   .grafico .barra-venda.parcial { fill: var(--superficie); stroke: var(--ouro); stroke-width: 1.5; stroke-dasharray: 3 2; }
+  .grafico .barra-venda.company { fill: var(--info); }
+  .grafico text.valor { fill: var(--texto-2); font-weight: 600; }
   .grafico .barra-venda.parcial.baixa { fill: color-mix(in srgb, var(--ouro) 45%, var(--superficie)); stroke: none; }
   .legenda i.parcial { background: var(--superficie); border: 1.5px dashed var(--ouro); }
   .grafico .linha-meta { stroke: var(--roxo); stroke-width: 2; stroke-dasharray: 5 4; fill: none; }
@@ -848,7 +853,7 @@
   .marca-completo { aspect-ratio: 652 / 1010; --desenho: url(data:image/png;base64,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); }
 </style>
 </head>
-<body data-k="" data-versao="3.3.1">
+<body data-k="" data-versao="3.4.0">
   <main class="pagina" style="max-width: 520px; padding-top: 64px; text-align: center;">
     <div class="marca-completo logo-entrada" role="img" aria-label="Indião da Sorte" style="margin-bottom: 20px;"></div>
     <p class="suave">Abrindo o app…</p>
@@ -865,7 +870,7 @@
 'use strict';
 
 /** Versão das telas: a mesma do servidor (VERSAO_BACKEND em Config.gs), conferida a cada resposta. */
-const VERSAO_TELA = '3.3.1';
+const VERSAO_TELA = '3.4.0';
 
 // ---------------------------------------------------------------------
 // Elementos
@@ -3569,13 +3574,29 @@ const TelaCampanhas = {
       ctx.mostrar(h('.cartao', Comp.vazio('Nenhuma campanha ainda', 'Crie a primeira: com 5 campos ela nasce como rascunho e o app já calcula o equilíbrio.')));
       return;
     }
-    const grupos = [['Ativa', 'Ativas'], ['Rascunho', 'Rascunhos'], ['Encerrada', 'Encerradas']];
-    ctx.mostrar(grupos.map((g) => {
-      const itens = lista.filter((c) => c.status === g[0]);
+    // Os sorteios antigos, feitos com a Company antes da Prime (3.4.0), ficam num grupo à parte, no fim: não têm acerto.
+    const grupos = [
+      ['Ativas', (c) => c.status === 'Ativa'], ['Rascunhos', (c) => c.status === 'Rascunho'],
+      ['Encerradas', (c) => c.status === 'Encerrada' && !c.company],
+      ['Sorteios com a Company', (c) => c.company, 'Antes da Prime: o resultado é todo da Indião, sem acerto entre as partes.']
+    ];
+    // O Histórico (3.4.0) fica no título do primeiro grupo de sorteios que já terminaram.
+    let historico = App.pode('campanhas.historico');
+    const secoes = grupos.map((g, i) => {
+      const itens = lista.filter(g[1]);
       if (!itens.length) return null;
-      return h('section', h('.secao-titulo', h('h2', g[1], h('span.suave', { style: { marginLeft: '8px', fontWeight: 500 } }, String(itens.length)))),
+      const link = historico && i >= 2 ? h('a.pequeno', { href: '#historico', onclick: App.cliqueNav('historico') }, 'Ver o histórico') : null;
+      if (link) historico = false;
+      return h('section', h('.secao-titulo', h('h2', g[0], h('span.suave', { style: { marginLeft: '8px', fontWeight: 500 } }, String(itens.length))), link),
+        g[2] ? h('p.suave.pequeno', { style: { margin: '4px 0 0' } }, g[2]) : null,
         h('.colunas.duas', { style: { marginTop: '12px' } }, itens.map((c) => TelaCampanhas.cartao(c))));
-    }));
+    });
+    // Sem nenhum sorteio encerrado ainda, o gestor chega ao Histórico (e à importação dos antigos) pelo pé da lista.
+    if (historico && App.pode('campanhas.importarAntigas')) {
+      secoes.push(h('p.suave.pequeno', 'Sorteios feitos antes do app? ',
+        h('a', { href: '#historico', onclick: App.cliqueNav('historico') }, 'Importe no Histórico')));
+    }
+    ctx.mostrar(secoes);
   },
 
   cartao(c) {
@@ -3607,7 +3628,8 @@ const TelaCampanhas = {
     // O status já é o título da seção; os chips ficam para o que pede atenção.
     const chips = [];
     if (c.status === 'Ativa') chips.push(Blocos.ritmo(c.ritmo));
-    if (c.foraDaLotep) chips.push(h('span.chip', 'Fora da LOTEP'));
+    if (c.company) chips.push(h('span.chip.azul', 'Com a Company'));
+    else if (c.foraDaLotep) chips.push(h('span.chip', 'Fora da LOTEP'));
     else if (c.status !== 'Encerrada' && !c.temAutorizacao) chips.push(h('span.chip.vermelho', 'Sem autorização LOTEP'));
     if (c.status !== 'Encerrada' && c.alertas) chips.push(h('span.chip.amarelo', F.plural(c.alertas, 'alerta', 'alertas')));
     return h('a.cartao', { href: '#' + rota, onclick: App.cliqueNav(rota) },
@@ -3848,13 +3870,15 @@ App.telas.campanha = {
 };
 
 const Cockpit = {
-  abas() {
+  /** Sorteio com a Company (antes da Prime): só a visão, as vendas, o financeiro e o relatório; o resto não existia no app. */
+  abas(info) {
+    const company = ['visao', 'vendas', 'financeiro', 'relatorio'];
     return [
       ['visao', 'Visão geral', true], ['calendario', 'Calendário', App.pode('agenda.periodo')], ['dinamicas', 'Dinâmicas', App.pode('dinamicas.listar')],
       ['vendas', 'Vendas', App.pode('vendas.listar')], ['financeiro', 'Financeiro', true],
       ['premios', App.pode('legalizacao.listar') ? 'Prêmios e documentos' : 'Prêmios', App.pode('premios.listar')],
       ['mensagens', 'Mensagens', App.pode('mensagens.dia')], ['relatorio', 'Relatório', App.pode('campanhas.relatorio')]
-    ].filter((a) => a[2]);
+    ].filter((a) => a[2] && (!info || !info.company || company.indexOf(a[0]) >= 0));
   },
 
   /** Orçamento das dinâmicas: quanto ainda cabe ou, se estourou, quanto passou (sem "livre" negativo). */
@@ -3880,7 +3904,7 @@ const Cockpit = {
     if (info.status === 'Ativa' && !(id in Cockpit.fases) && aba !== 'visao' && aba !== 'financeiro') {
       App.ler('campanhas.cockpit', { id: id }).then((d) => { if (ctx.ativo()) Cockpit.topo(ctx, null, d); }, () => {});
     }
-    const nav = dicaDeRolagem(h('nav.abas', { 'aria-label': 'Partes da campanha' }, Cockpit.abas().map((a) => {
+    const nav = dicaDeRolagem(h('nav.abas', { 'aria-label': 'Partes da campanha' }, Cockpit.abas(info).map((a) => {
       const rota = 'campanha/' + encodeURIComponent(id) + (a[0] === 'visao' ? '' : '/' + a[0]);
       return h('a', { href: '#' + rota, onclick: App.cliqueNav(rota), 'aria-current': a[0] === aba ? 'page' : null }, a[1]);
     })));
@@ -3901,20 +3925,23 @@ const Cockpit = {
 
   topo(ctx, info, d) {
     const c = d ? d.campanha : info;
+    const company = !!(d ? d.company : info && info.company);
     if (d) Cockpit.fases[c.id] = d.fase || null;
     const fase = Cockpit.fases[c.id];
     // Curto para caber no celular: a fase só conta com a campanha no ar, e o ano do sorteio só aparece se não for o deste ano.
     const sorteio = lerData(c.sorteio);
-    const sub = [c.status, fase && c.status === 'Ativa' ? 'fase ' + fase.toLowerCase() : null,
+    const sub = [company ? c.status + ' · com a Company' : c.status, fase && c.status === 'Ativa' ? 'fase ' + fase.toLowerCase() : null,
       sorteio ? 'sorteio ' + (sorteio.getFullYear() === App.agora().getFullYear() ? F.dataCurta(sorteio) : F.data(sorteio)) : null].filter(Boolean).join(' · ');
     const menu = App.ehGestor() ? Comp.menu(c.nome, [
       { rotulo: 'Editar campanha', icone: 'editar', acao: () => Cockpit.editar(c.id, ctx) },
       { rotulo: 'Ativar campanha', icone: 'ok', oculto: c.status !== 'Rascunho', acao: () => Cockpit.ativar(c.id, ctx) },
       { rotulo: 'Antecipar o sorteio', icone: 'calendario', oculto: c.status !== 'Ativa' || !(chaveDia(sorteio) > chaveDia(App.agora())),
         acao: () => Cockpit.antecipar(c.id, ctx) },
-      { rotulo: 'Distribuição do resultado', icone: 'caixa', oculto: c.status !== 'Encerrada', acao: () => App.ir('distribuicao/' + encodeURIComponent(c.id)) },
+      { rotulo: 'Distribuição do resultado', icone: 'caixa', oculto: c.status !== 'Encerrada' || company, acao: () => App.ir('distribuicao/' + encodeURIComponent(c.id)) },
       { rotulo: 'Encerrar campanha', icone: 'fechar', perigo: true, oculto: c.status !== 'Ativa', acao: () => Cockpit.encerrar(c.id, ctx) },
-      { rotulo: 'Excluir rascunho', icone: 'lixo', perigo: true, oculto: c.status !== 'Rascunho', acao: () => Cockpit.excluir(c.id) }
+      { rotulo: 'Excluir rascunho', icone: 'lixo', perigo: true, oculto: c.status !== 'Rascunho', acao: () => Cockpit.excluir(c.id) },
+      // Sorteio antigo importado: sai com tudo o que é dele, para importar de novo se o arquivo estava errado.
+      { rotulo: 'Excluir sorteio antigo', icone: 'lixo', perigo: true, oculto: !company, acao: () => Cockpit.excluir(c.id) }
     ]) : null;
     ctx.topo({ titulo: c.nome, sub: sub, voltar: 'campanhas', acoes: menu ? [menu] : [] });
   },
@@ -3929,10 +3956,13 @@ const Cockpit = {
     if (r) { await App.atualizarCampanhas(); ctx.recarregar(); }
   },
 
-  /** Só rascunho: o servidor diz o que sai junto e o que impede (vendas, prêmios, lançamentos à mão). */
+  /**
+   * Rascunho ou sorteio antigo (Company): o servidor diz o que sai junto e o que impede (no rascunho: vendas, prêmios,
+   * lançamentos à mão).
+   */
   async excluir(id) {
-    const r = await App.executar('campanhas.excluir', { id: id }, { sucesso: (d) => 'Rascunho ' + d.excluida.nome + ' excluído.' });
-    if (r) { await App.atualizarCampanhas(); App.ir('campanhas'); }
+    const r = await App.executar('campanhas.excluir', { id: id }, { sucesso: (d) => (d.excluida.company ? 'Sorteio antigo ' : 'Rascunho ') + d.excluida.nome + ' excluído.' });
+    if (r) { await App.atualizarCampanhas(); App.ir(r.excluida.company ? 'historico' : 'campanhas'); }
   },
 
   /**
@@ -4057,7 +4087,8 @@ const Cockpit = {
           : null));
     }
 
-    const expiracao = Cockpit.expiracao(v);
+    // Os sorteios com a Company não trazem pedidos expirados: sem o quadro, para não mostrar 0% como se fosse medido.
+    const expiracao = d.company ? null : Cockpit.expiracao(v);
     const ponte = encerrada ? null : Cockpit.ponte(d);
     if (ponte || expiracao) blocos.push(h('.colunas' + (ponte && expiracao ? '.duas' : ''), ponte, expiracao));
 
@@ -4156,7 +4187,8 @@ const Cockpit = {
     // Encerrada: o equilíbrio com os custos realizados, o mesmo do Financeiro.
     const eq = encerrada && !F.vazio(e.realizado) ? e.realizado : e.projetado;
     const pctEq = encerrada && !F.vazio(e.realizado) ? (v.vendaMaxima ? eq / v.vendaMaxima : 0) : e.pctProjetado;
-    const marcas = [{ valor: pctEq, rotulo: 'Equilíbrio ' + F.pct(pctEq) + ' · ' + F.moeda(eq, { compacto: true }) }];
+    // Sorteio com a Company: sem o equilíbrio, que sairia dos percentuais de hoje (plataforma e comissões), não dos da época.
+    const marcas = d.company ? [] : [{ valor: pctEq, rotulo: 'Equilíbrio ' + F.pct(pctEq) + ' · ' + F.moeda(eq, { compacto: true }) }];
     if (d.meta.valor && v.vendaMaxima) {
       marcas.push({ valor: d.meta.valor / v.vendaMaxima, classe: 'meta',
         rotulo: 'Meta ' + F.pct(d.meta.valor / v.vendaMaxima) + ' · ' + F.moeda(d.meta.valor, { compacto: true }) });
@@ -4166,11 +4198,12 @@ const Cockpit = {
     const metaAbaixo = !encerrada && d.meta.valor > 0 && e.projetado > d.meta.valor + 0.5;
     return h('.cartao',
       // Rascunho sem venda: o chip diz quando as vendas abrem, não "sem vendas importadas".
-      h('.cabeca', h('h2', 'Cotas vendidas'), semVenda && c.inicio ? h('span.chip', 'Vendas a partir de ' + F.dataCurta(c.inicio)) : Blocos.ritmo(e.ritmo)),
+      h('.cabeca', h('h2', 'Cotas vendidas'), semVenda && c.inicio ? h('span.chip', 'Vendas a partir de ' + F.dataCurta(c.inicio))
+        : d.company ? null : Blocos.ritmo(e.ritmo)),
       semVenda ? null : h('p', { style: { margin: 0 } }, h('strong', F.pct(v.pctVendido) + ' das cotas vendidas'),
         ' · ' + F.moeda(v.total, encerrada ? {} : { compacto: true }) + ' · ' + F.plural(v.cotasVendidas, 'cota', 'cotas')),
       Comp.progresso({ valor: v.pctVendido, marcas: marcas, rotulos: true, rotulo: 'Cotas vendidas',
-        cor: e.ritmo === 'abaixo' ? 'vermelho' : e.ritmo === 'equilíbrio atingido' ? 'verde' : '' }),
+        cor: d.company ? '' : e.ritmo === 'abaixo' ? 'vermelho' : e.ritmo === 'equilíbrio atingido' ? 'verde' : '' }),
       falta
         ? h('p', { style: { marginBottom: 0 } }, 'Faltam ', h('strong', F.plural(e.cotasFalta, 'cota', 'cotas')), ' (' + F.moeda(e.falta, { compacto: true }) + ') para o equilíbrio' +
           (v.diasRestantes > 0 ? ' em ' + F.plural(v.diasRestantes, 'dia', 'dias') + (v.diasAteAbrir > 0 ? ' de venda' : '') : '') + '.' +
@@ -4199,6 +4232,7 @@ const Cockpit = {
         h('dt', 'Custos'), h('dd', F.moeda(f.resultado - f.vendas)),
         h('dt.total', 'Resultado final'), h('dd.total.' + (F.cls(f.resultado) || 'x'), F.moeda(f.resultado))),
       f.comprometido > 0.005 ? h('p.suave.pequeno', { style: { margin: '8px 0 0' } }, 'Inclui ' + F.moeda(f.comprometido) + ' que ainda falta pagar.') : null);
+    if (f.company) return h('.colunas.duas', resultado, Cockpit.notaCompany());
     // fluxo: o que passou pelo caixa de cada parte nesta campanha (negativo: ela pôs dinheiro).
     const noCaixa = (nome, fl) => fl < -0.005 ? nome + ' cobriu ' + F.moeda(-fl) : fl > 0.005 ? nome + ' ficou com ' + F.moeda(fl) : null;
     const caixa = [noCaixa('a ' + pri, f.fluxoPrime), noCaixa('a ' + ind, f.fluxoIndiao)].filter(Boolean);
@@ -4219,6 +4253,44 @@ const Cockpit = {
       h('p', { style: { margin: 0 } }, h('strong', acerto)),
       botoes.length ? h('.acoes', { style: { marginTop: '12px' } }, botoes) : null);
     return h('.colunas.duas', resultado, divisao);
+  },
+
+  /** Sorteio feito com a Company, antes da Prime (3.4.0): por que não tem acerto nem distribuição. */
+  notaCompany() {
+    const ind = TelaCaixa.curto(App.sessao.partes.indiao), pri = TelaCaixa.curto(App.sessao.partes.prime);
+    return h('.cartao', h('.cabeca', h('h2', 'Sorteio com a Company'), h('span.chip.azul', 'Antes da ' + pri)),
+      h('p', { style: { margin: '0 0 8px' } }, 'A Company operou: recebeu as vendas, pagou os prêmios, o IR, a licença e a taxa dela e repassou o resto à ' +
+        ind + ' por nota fiscal. O que a ' + ind + ' pagou por fora (sorteios extras, tráfego, influenciadores) também está nos custos.'),
+      h('p', { style: { margin: 0 } }, h('strong', 'O resultado é todo da ' + ind + '.'), ' Não tem acerto entre as partes nem distribuição, e o sorteio fica fora do relatório da ' + pri + '.'),
+      App.pode('campanhas.historico') ? h('.acoes', { style: { marginTop: '12px' } },
+        h('a.btn.pequeno', { href: '#historico', onclick: App.cliqueNav('historico') }, 'Ver no Histórico')) : null);
+  },
+
+  /**
+   * Custos do fechamento de um sorteio com a Company (3.4.0), na ordem do resultado, com o crédito do prêmio não distribuído
+   * somando. Quem pagou (a Company, descontando do repasse, ou a Indião, por fora) está na descrição. No Financeiro, as
+   * linhas abrem o lançamento (op.linhas: o Livro caixa da campanha) e o gestor pode lançar um custo que faltou.
+   */
+  custosAntigos(custos, op) {
+    op = op || {};
+    const porId = {};
+    (op.linhas || []).forEach((l) => { porId[l.id] = l; });
+    const total = (custos || []).reduce((t, x) => t + (Number(x.efeito) || 0), 0);
+    const abrir = (x) => porId[x.id] ? () => TelaCaixa.detalhe(porId[x.id], { campanha: op.campanha, aoMudar: op.aoMudar }) : null;
+    const lancar = op.aoMudar && App.pode('caixa.lancar') ? h('button.btn.pequeno', { type: 'button',
+      onclick: () => TelaCaixa.lancar('Saída', { partes: App.sessao.partes }, { campanha: op.campanha, aoMudar: op.aoMudar }) }, icone('mais'), 'Lançar custo') : null;
+    const linhas = (custos || []).map((x) => {
+      const fn = abrir(x);
+      return h('li' + (fn ? '.clicavel' : ''), fn ? { role: 'button', tabindex: '0', onclick: fn, onkeydown: chaveTecla(fn) } : null,
+        h('.principal', h('.t', x.descricao || x.categoria), h('.d', x.categoria)),
+        h('.lado', Cockpit.relValor(x.efeito, { sinal: x.efeito > 0 })));
+    });
+    return h('.cartao', h('.cabeca', h('h2', 'Custos do fechamento'), lancar),
+      linhas.length ? [h('ul.lista.dentro', linhas),
+        h('dl.valores', { style: { marginTop: '10px' } }, h('dt.total', 'Total dos custos'), h('dd.total', Cockpit.relValor(total)))]
+        : h('p.suave', { style: { margin: 0 } }, 'Nenhum custo lançado neste sorteio.'),
+      h('p.suave.pequeno', { style: { margin: '10px 0 0' } }, 'Os custos que a Company pagou e descontou do repasse e os que a ' +
+        TelaCaixa.curto(App.sessao.partes.indiao) + ' pagou por fora: quem pagou está na descrição. O crédito do prêmio não distribuído soma.'));
   },
 
   paraAtivar(d, ctx) {
@@ -4511,6 +4583,18 @@ const Cockpit = {
     Cockpit.topo(ctx, null, d);
     const c = d.campanha, livre = d.orcamento.livre || {}, pl = d.pl;
     const encerrada = c.status === 'Encerrada';
+    // Sorteio com a Company: o fechamento e os custos dele; o orçado, os tetos e quem pagou não se aplicam.
+    if (d.company) {
+      const vendas = pl.realizado[App.sessao.listas.cat.vendas] || 0, res = pl.resultadoComComprometidos;
+      trocar(el, [
+        // Vendas e custos resumidos (os valores exatos estão no fechamento); o resultado, que ocupa a linha toda, inteiro.
+        h('.kpis', Comp.kpi('Vendas', F.moeda(vendas, { compacto: true }), F.plural(d.vendas.cotasVendidas, 'cota', 'cotas')),
+          Comp.kpi('Custos', F.moeda(res - vendas, { compacto: true }), (d.custos || []).some((x) => x.efeito > 0) ? 'com o crédito de prêmio não distribuído' : 'do fechamento'),
+          Comp.kpi('Resultado final', F.moeda(res), 'todo da ' + TelaCaixa.curto(App.sessao.partes.indiao) + (vendas > 0 ? ' · margem ' + F.pct(res / vendas) : ''), F.cls(res))),
+        Cockpit.custosAntigos(d.custos, { linhas: caixa ? caixa.linhas : [], campanha: id, aoMudar: () => ctx.recarregar() })
+      ]);
+      return;
+    }
     const rotaDist = 'distribuicao/' + encodeURIComponent(id);
     const verDistribuicao = App.pode('distribuicao.simular') ? h('a.btn.pequeno', { href: '#' + rotaDist, onclick: App.cliqueNav(rotaDist) }, 'Ver distribuição') : null;
     const kpis = [];
@@ -4834,7 +4918,7 @@ const Cockpit = {
     if (!ctx.ativo()) return;
     const c = d.campanha, partes = App.sessao.partes;
     const blocos = [];
-    if (App.pode('distribuicao.relatorio')) {
+    if (App.pode('distribuicao.relatorio') && !d.company) {
       const pdf = h('button.btn', { type: 'button', onclick: async () => {
         pdf.classList.add('carregando');
         let versoes = [];
@@ -4845,8 +4929,10 @@ const Cockpit = {
       blocos.push(h('.acoes.fim', pdf));
     }
     // O acerto entre as partes logo depois do resultado, como no PDF (3.3.1).
+    // Sorteio com a Company: os custos do fechamento no lugar do orçado (o orçado seria o de hoje, não o da época).
     blocos.push(Cockpit.relResumo(d), c.status === 'Encerrada' ? Cockpit.relFechamento(d) : Cockpit.relResultado(d),
-      d.posicao ? Cockpit.relPartes(d) : null, Cockpit.relOrcamento(d));
+      d.company ? Cockpit.notaCompany() : null, d.posicao ? Cockpit.relPartes(d) : null,
+      d.company ? Cockpit.custosAntigos(d.custos) : Cockpit.relOrcamento(d));
     // Campanha lançada só com o total não tem venda por dia: o resumo avisa, sem um gráfico vazio.
     if ((d.serie || []).length || c.status === 'Ativa') {
       const e = d.equilibrio;
@@ -4895,9 +4981,9 @@ const Cockpit = {
       h('dt', 'Cotas vendidas'), h('dd', F.int(v.cotasVendidas) + ' de ' + F.int(c.totalCotas) + ' ', h('span.num', '(' + F.pct(v.pctVendido) + ')'))
     ];
     if (!(d.serie || []).length && vendas > 0.005) linhas.push(h('dd.nota', 'Vendas diárias não disponíveis: a campanha tem só o total vendido.'));
-    linhas.push(h('dt', 'Ponto de equilíbrio'), h('dd', F.moeda(eq) + ' ', h('span.num', '(' + F.pct(pctEq) + ' das cotas)')));
+    if (!d.company) linhas.push(h('dt', 'Ponto de equilíbrio'), h('dd', F.moeda(eq) + ' ', h('span.num', '(' + F.pct(pctEq) + ' das cotas)')));
     // Sem pedidos expirados importados, 0% seria uma informação falsa.
-    if (ex.tentativas) {
+    if (ex.tentativas && !d.company) {
       linhas.push(h('dt', 'Expirados sem pagar'), h('dd', F.pct(ex.taxa) + ' (' + F.int(ex.expirados) + ' de ' + F.int(ex.tentativas) + ')'),
         h('dd.nota', 'Pedidos que expiraram sem pagamento. Venda perdida estimada: ' + F.moeda(ex.vendaNaMesa) + '.'));
     }
@@ -5152,6 +5238,206 @@ const Cockpit = {
         'dinâmicas, IR) e os pagamentos de comissões e disparos vêm somados por categoria; o que ainda está a pagar entra quando for pago. ' +
         'O total de cada coluna é o "Pagou dos custos" do quadro das partes.'));
   }
+};
+
+// ---------------------------------------------------------------------
+// Histórico (3.4.0): as campanhas lado a lado, as da Prime e os sorteios
+// antigos com a Company, e a importação desses sorteios antigos.
+// ---------------------------------------------------------------------
+
+App.telas.historico = {
+  area: 'campanhas',
+  titulo: 'Histórico',
+  pode: () => App.pode('campanhas.historico'),
+  render(ctx) { return TelaHistorico.render(ctx); }
+};
+
+const TelaHistorico = {
+  async render(ctx) {
+    const acoes = App.pode('campanhas.importarAntigas')
+      ? [h('button.btn', { type: 'button', title: 'Importar sorteios antigos', onclick: () => TelaHistorico.importar(ctx) }, icone('upload'), 'Importar')] : [];
+    ctx.topo({ titulo: 'Histórico', sub: 'Faturamento e resultado de cada sorteio', voltar: 'campanhas', acoes: acoes });
+    const d = await App.ler('campanhas.historico', {});
+    if (!ctx.ativo()) return;
+    if (!d.campanhas.length) {
+      ctx.mostrar(h('.cartao', Comp.vazio('Nenhum sorteio ainda', 'As campanhas aparecem aqui quando forem ativadas.' +
+        (acoes.length ? ' Os sorteios feitos com a Company, antes da Prime, entram por Importar sorteios antigos.' : ''))));
+      return;
+    }
+    const t = d.totais;
+    const kpis = [
+      Comp.kpi('Faturamento', F.moeda(t.encerradas.faturamento, { compacto: true }), F.plural(t.encerradas.campanhas, 'sorteio encerrado', 'sorteios encerrados')),
+      Comp.kpi('Resultado', F.moeda(t.encerradas.resultado, { compacto: true }), F.vazio(t.encerradas.margem) ? null : 'margem de ' + F.pct(t.encerradas.margem), F.cls(t.encerradas.resultado))
+    ];
+    [['company', 'Com a Company'], ['prime', 'Com a ' + TelaCaixa.curto(App.sessao.partes.prime)]].forEach((x) => {
+      const g = t[x[0]];
+      if (!g.campanhas) return;
+      kpis.push(Comp.kpi(x[1], F.moeda(g.faturamento, { compacto: true }), F.plural(g.campanhas, 'sorteio', 'sorteios') + ' · resultado ' +
+        F.moeda(g.resultado, { compacto: true }) + (F.vazio(g.margem) ? '' : ' (' + F.pct(g.margem) + ')')));
+    });
+    const noAr = d.campanhas.some((c) => c.status === 'Ativa');
+    ctx.mostrar([
+      h('.kpis', kpis),
+      h('.cartao', h('h2', 'Faturamento por sorteio'), Grafico.historico(d.campanhas)),
+      h('.cartao', h('h2', 'Sorteio a sorteio'), TelaHistorico.tabela(d),
+        h('p.suave.pequeno', { style: { margin: '10px 0 0' } }, 'Resultado antes do Simples, com os custos pagos e os que faltam pagar; margem é o resultado sobre o faturamento. ' +
+          'Nos sorteios com a Company, o resultado é todo da ' + TelaCaixa.curto(App.sessao.partes.indiao) + '.' +
+          (noAr ? ' A campanha no ar entra com o que vendeu até hoje, fora dos totais.' : '')))
+    ]);
+  },
+
+  /** "30/10/2025 a 27/12/2025", ou "30/10 a 27/12/2025" no mesmo ano. */
+  periodo(c) {
+    const a = lerData(c.inicio), b = lerData(c.fim || c.sorteio);
+    if (!a || !b) return '';
+    return (a.getFullYear() === b.getFullYear() ? F.dataCurta(a) : F.data(a)) + ' a ' + F.data(b);
+  },
+
+  tabela(d) {
+    const t = d.totais, pri = TelaCaixa.curto(App.sessao.partes.prime);
+    const totais = [['Total com a Company', t.company], ['Total com a ' + pri, t.prime], ['Total dos encerrados', t.encerradas]]
+      .filter((x, i, todos) => x[1].campanhas && (i < 2 || (todos[0][1].campanhas && todos[1][1].campanhas)))
+      .map((x) => Object.assign({ total: true, nome: x[0] }, x[1]));
+    const num = (v, fmt) => F.vazio(v) ? '–' : h('span.num', fmt(v));
+    const ehTotal = (l) => !!l.total;
+    const colunas = [
+      { titulo: 'Sorteio', valor: (l) => ehTotal(l) ? h('strong', l.nome) : [h('div', l.nome),
+        h('div.suave.pequeno', [TelaHistorico.periodo(l), l.company ? 'com a Company' : l.status === 'Ativa' ? 'no ar' : null].filter(Boolean).join(' · '))] },
+      { titulo: 'Dias', dir: true, valor: (l) => ehTotal(l) ? '–' : num(l.diasVenda, F.int) },
+      { titulo: 'Faturamento', dir: true, valor: (l) => num(l.faturamento, (v) => F.moeda(v)) },
+      { titulo: 'Média por dia', dir: true, valor: (l) => ehTotal(l) ? '–' : num(l.mediaDia, (v) => F.moeda(v, { semCentavos: true })) },
+      { titulo: 'Pedidos', dir: true, valor: (l) => ehTotal(l) ? '–' : num(l.pedidos, F.int) },
+      { titulo: 'Tíquete médio', dir: true, valor: (l) => ehTotal(l) ? '–' : num(l.ticket, (v) => F.moeda(v)) },
+      { titulo: 'Resultado', dir: true, valor: (l) => Cockpit.relValor(l.resultado) },
+      { titulo: 'Margem', dir: true, valor: (l) => F.vazio(l.margem) ? '–' : h('span.num' + (l.margem < 0 ? '.neg' : ''), F.pct(l.margem)) }
+    ];
+    const tabela = Comp.tabela(colunas, d.campanhas.concat(totais), {
+      classeLinha: (l) => ehTotal(l) ? 'total' : '',
+      clicavel: (l) => { if (!ehTotal(l)) App.ir('campanha/' + encodeURIComponent(l.id)); }
+    });
+    return Cockpit.relCompacta(tabela);
+  },
+
+  /**
+   * Importar sorteios antigos: o arquivo preparado (sorteios-company.json), uma prévia com o que entra e, com o OK do
+   * gestor, a gravação. Os que já estão no app (mesmo nome) ficam como estão.
+   */
+  importar(ctx) {
+    const arq = Comp.arquivo({ rotulo: 'Arquivo dos sorteios antigos', aceita: '.json,application/json',
+      dica: 'O arquivo sorteios-company.json, montado com os fechamentos da Company. Nada é gravado antes de você conferir a prévia.' });
+    const erro = h('div');
+    const conferir = h('button.btn.primario', { type: 'button' }, 'Conferir');
+    const f = Comp.folha({ titulo: 'Importar sorteios antigos', larga: true, corpo: [
+      h('p', { style: { marginTop: 0 } }, 'Os sorteios feitos com a Company, antes da ' + TelaCaixa.curto(App.sessao.partes.prime) + ', entram como campanhas encerradas, ' +
+        'com as vendas por dia e os custos do fechamento. Ficam fora do acerto, da distribuição e do relatório da ' + TelaCaixa.curto(App.sessao.partes.prime) +
+        ': o resultado é todo da ' + TelaCaixa.curto(App.sessao.partes.indiao) + '.'),
+      arq, erro],
+      rodape: [h('button.btn', { type: 'button', onclick: () => f.fechar() }, 'Voltar'), conferir] });
+    conferir.addEventListener('click', async () => {
+      trocar(erro, []);
+      let a;
+      try { a = await Comp.lerArquivo(arq, { texto: true, limiteMb: 2 }); } catch (e) { trocar(erro, Comp.aviso('perigo', e.message)); return; }
+      if (!a) { trocar(erro, Comp.aviso('perigo', 'Escolha o arquivo dos sorteios antigos.')); return; }
+      let dados;
+      try { dados = JSON.parse(a.texto); } catch (e) { trocar(erro, Comp.aviso('perigo', 'Não consegui ler este arquivo: ele não é o arquivo preparado dos sorteios antigos.')); return; }
+      conferir.classList.add('carregando'); conferir.disabled = true;
+      let p;
+      try { p = await App.chamar('campanhas.importarAntigas', { previa: true, dados: dados }); } catch (e) { App.mostrarErro(e, erro); return; }
+      finally { conferir.classList.remove('carregando'); conferir.disabled = false; }
+      TelaHistorico.previa(f, p, dados, a.nome, ctx);
+    });
+  },
+
+  previa(f, p, dados, arquivo, ctx) {
+    const t = p.totais;
+    const avisos = [];
+    p.edicoes.forEach((e) => (e.avisos || []).forEach((x) => avisos.push(e.nome + ': ' + x)));
+    const tabela = Comp.tabela([
+      { titulo: 'Sorteio', valor: (e) => [h('div', e.nome), h('div.suave.pequeno', TelaHistorico.periodo(e) + ' · ' + F.plural(e.dias, 'dia de venda', 'dias de venda') +
+        ' · ' + F.plural(e.lancamentos, 'custo', 'custos')), e.jaExiste ? h('.chips', { style: { marginTop: '4px' } }, h('span.chip', 'Já está no app')) : null] },
+      { titulo: 'Faturamento', dir: true, valor: (e) => h('span.num', F.moeda(e.faturamento)) },
+      { titulo: 'Custos', dir: true, valor: (e) => h('span.num', F.moeda(e.creditos - e.custos)) },
+      { titulo: 'Resultado', dir: true, valor: (e) => Cockpit.relValor(e.resultado) },
+      { titulo: 'Margem', dir: true, valor: (e) => F.vazio(e.margem) ? '–' : h('span.num' + (e.margem < 0 ? '.neg' : ''), F.pct(e.margem)) }
+    ], p.edicoes, { classeLinha: (e) => e.jaExiste ? 'apagada' : '' });
+    const resumo = t.novas
+      ? h('p', { style: { margin: '12px 0 0' } }, 'Entram ', h('strong', F.plural(t.novas, 'sorteio', 'sorteios')), ': faturamento de ' + F.moeda(t.faturamento) +
+        ' e resultado de ' + F.moeda(t.resultado) + '.' + (t.jaExistem ? ' ' + F.plural(t.jaExistem, 'já está', 'já estão') + ' no app e ' + (t.jaExistem === 1 ? 'fica' : 'ficam') + ' como está.' : ''))
+      : Comp.aviso('info', 'Todos os sorteios deste arquivo já estão no app. Para refazer um, exclua o sorteio antigo pelo menu dele e importe de novo.');
+    const erro = h('div');
+    const gravar = h('button.btn.primario', { type: 'button', disabled: !t.novas }, icone('upload'), t.novas ? 'Importar ' + F.plural(t.novas, 'sorteio', 'sorteios') : 'Nada a importar');
+    f.mostrar([
+      h('p.suave', { style: { marginTop: 0 } }, 'Confira os números antes de gravar. Arquivo: ' + arquivo + '.'),
+      Cockpit.relCompacta(tabela), resumo,
+      avisos.length ? Comp.aviso('alerta', [h('strong', 'Para conferir:'), h('ul', avisos.map((x) => h('li', x)))]) : null,
+      erro
+    ], [h('button.btn', { type: 'button', onclick: () => f.fechar() }, 'Voltar'), gravar]);
+    gravar.addEventListener('click', async () => {
+      const r = await App.executar('campanhas.importarAntigas', { dados: dados, arquivo: arquivo }, { botao: gravar, erroEm: erro,
+        sucesso: (x) => F.plural(x.criadas.length, 'sorteio importado', 'sorteios importados') + '.' });
+      if (!r) return;
+      f.fechar();
+      await App.atualizarCampanhas();
+      ctx.recarregar();
+    });
+  }
+};
+
+/**
+ * Barras do faturamento de cada sorteio, na ordem do sorteio: azul para os da Company, ouro para os da Prime e tracejada
+ * para a campanha no ar (o que vendeu até hoje). O valor em cima da barra e o nome curto embaixo.
+ */
+Grafico.historico = function (lista) {
+  const caixa = h('.grafico');
+  /** Nome curto que cabe no espaço da barra: "Edição 01" (o que vem antes do "·"), "Ed. 01" ou o começo do nome. */
+  const curto = (nome, max) => {
+    const n = String(nome || '');
+    const antes = n.split(' · ')[0];
+    if (antes !== n && antes.length <= max) return antes;
+    const ed = /^Edi[çc][ãa]o\s*(\d+)/i.exec(n);
+    if (ed && ed[1].length + 4 <= max) return 'Ed. ' + ed[1];
+    return n.length > max ? n.slice(0, max - 1).trim() + '…' : n;
+  };
+  const desenhar = () => {
+    const largura = Math.max(300, caixa.clientWidth || 640);
+    const n = lista.length, esq = 52, dir = 8, topo = 22, alt = 170, base = 24;
+    // No celular cabem seis sorteios; com mais, o gráfico rola de lado e abre nos mais recentes.
+    const passo = Math.max(44, (largura - esq - dir) / n);
+    const apertado = passo < 56;
+    const barra = Math.max(18, Math.min(56, passo * 0.6));
+    const W = Math.max(largura, esq + n * passo + dir), H = topo + alt + base;
+    const max = Grafico.topoRedondo(Math.max(1, ...lista.map((c) => Number(c.faturamento) || 0)));
+    const y = (v) => topo + alt - (v / max) * alt;
+    const svg = s('svg', { viewBox: '0 0 ' + W + ' ' + H, width: W, height: H, role: 'img', 'aria-label': 'Faturamento por sorteio' });
+    [0, 0.5, 1].forEach((f) => {
+      const v = max * f, yy = y(v);
+      svg.appendChild(s('line', { x1: esq, x2: W - dir, y1: yy, y2: yy, class: 'eixo', 'stroke-dasharray': f ? '2 4' : null }));
+      svg.appendChild(s('text', { x: esq - 6, y: yy + 4, 'text-anchor': 'end' }, f ? F.moeda(v, { compacto: true }).replace('R$ ', '') : '0'));
+    });
+    lista.forEach((c, i) => {
+      const x = esq + i * passo + (passo - barra) / 2;
+      const fat = Number(c.faturamento) || 0;
+      const altura = Math.max(1, topo + alt - y(fat));
+      const g = s('g');
+      g.appendChild(s('title', null, [c.nome, TelaHistorico.periodo(c), 'Faturamento ' + F.moeda(fat), 'Resultado ' + F.moeda(c.resultado),
+        c.company ? 'Com a Company' : c.status === 'Ativa' ? 'No ar: até hoje' : null].filter(Boolean).join('\n')));
+      g.appendChild(s('rect', { x: x, y: topo + alt - altura, width: barra, height: altura, rx: 2,
+        class: 'barra-venda' + (c.company ? ' company' : '') + (c.status === 'Ativa' ? ' parcial' : '') }));
+      g.appendChild(s('text', { x: x + barra / 2, y: Math.max(11, topo + alt - altura - 5), 'text-anchor': 'middle', class: 'valor',
+        style: apertado ? 'font-size: 10px' : null },
+        F.moeda(fat, { compacto: true }).replace('R$ ', '')));
+      g.appendChild(s('text', { x: x + barra / 2, y: H - 7, 'text-anchor': 'middle' }, curto(c.nome, Math.max(6, Math.floor(passo / 6.6)))));
+      svg.appendChild(g);
+    });
+    trocar(caixa, svg);
+    if (caixa.scrollWidth > caixa.clientWidth) caixa.scrollLeft = caixa.scrollWidth;
+  };
+  setTimeout(desenhar, 0);
+  const legenda = [];
+  if (lista.some((c) => c.company)) legenda.push(h('span', h('i', { style: { background: 'var(--info)' } }), 'com a Company'));
+  if (lista.some((c) => !c.company)) legenda.push(h('span', h('i', { style: { background: 'var(--ouro)' } }), 'com a ' + TelaCaixa.curto(App.sessao.partes.prime)));
+  if (lista.some((c) => c.status === 'Ativa')) legenda.push(h('span', h('i.parcial'), 'no ar (até hoje)'));
+  return h('div', caixa, h('.legenda', { style: { marginTop: '8px' } }, legenda));
 };
 </script>
   <script>
@@ -6059,6 +6345,8 @@ const TelaCaixa = {
     const reserva = /^dinamica:/.test(l.origem || '');
     const comprometido = l.status === 'Comprometido';
     const passou = !!lerData(l.data) && lerData(l.data) < App.hoje();
+    // Sorteio com a Company (3.4.0): tudo em nome da Indião, sem acerto; não tem "Pago por" nem "Quem pagou".
+    const company = !!(App.campanha(l.campanha) || {}).company;
     // Sem códigos internos para quem só acompanha; o código do lançamento fica para o gestor achar a linha na planilha.
     const linhas = [
       ['Data', F.data(l.data)],
@@ -6070,7 +6358,7 @@ const TelaCaixa = {
       transferencia ? ['De → para', l.parte + ' → ' + l.para]
         : l.divisao ? ['Pago por', [h('div', TelaCaixa.curto(App.sessao.partes.indiao) + ' ' + F.moeda(l.divisao.indiao)),
           h('div', TelaCaixa.curto(App.sessao.partes.prime) + ' ' + F.moeda(l.divisao.prime))]]
-          : [l.tipo === 'Entrada' ? 'Recebido por' : 'Pago por', l.parte || '–'],
+          : company ? null : [l.tipo === 'Entrada' ? 'Recebido por' : 'Pago por', l.parte || '–'],
       l.forma ? ['Forma', TelaCaixa.rotuloForma(l.forma)] : null,
       l.campanhaOrigem ? ['Campanha ligada', TelaCaixa.nomeCampanha(l.campanhaOrigem)] : null,
       ['Situação', comprometido ? (reserva ? 'Reservado' : l.tipo === 'Entrada' ? 'A receber' : 'A pagar') : l.tipo === 'Entrada' ? 'Recebido' : 'Pago'],
@@ -6080,7 +6368,8 @@ const TelaCaixa = {
     ].filter(Boolean);
     const premio = /^premio:[^:]+$/.test(l.origem || ''), irPremio = /^premio:.+:ir$/.test(l.origem || '');
     const partes = App.sessao.partes;
-    const explicacao = {
+    const explicacao = company ? 'Sorteio feito com a Company, antes da ' + TelaCaixa.curto(partes.prime) + ': tudo fica em nome da ' +
+      TelaCaixa.curto(partes.indiao) + ', sem acerto entre as partes. Quem pagou (a Company ou a ' + TelaCaixa.curto(partes.indiao) + ') vai na descrição.' : {
       automatico: premio
         ? 'Lançamento automático do prêmio lançado em Prêmios.' + (App.pode('premios.quemPagou') ? ' Para mudar quem pagou, use Quem pagou aqui ou o menu do prêmio na aba Prêmios.' : '')
         : irPremio
@@ -6114,7 +6403,7 @@ const TelaCaixa = {
       botoes.push(h('button.btn', { type: 'button', onclick: () => { f.fechar(); TelaCaixa.editar(l, op); } }, icone('editar'), 'Editar'));
     }
     // Custo lançado à mão e já pago: dividir entre as partes, mudar os valores ou juntar numa parte só.
-    if (App.pode('caixa.quemPagou') && l.classe === 'manual' && !transferencia && l.tipo === 'Saída' && !comprometido) {
+    if (App.pode('caixa.quemPagou') && l.classe === 'manual' && !transferencia && l.tipo === 'Saída' && !comprometido && !company) {
       botoes.push(h('button.btn', { type: 'button', onclick: () => { f.fechar(); TelaCaixa.quemPagou(l, op); } }, icone('usuario'), 'Quem pagou'));
     }
     // Prêmio lançado em Prêmios (3.3.1): quem pagou também muda daqui, sem ir à aba Prêmios.
@@ -6304,13 +6593,33 @@ const TelaCaixa = {
       x.form.querySelectorAll('input[name="pago"]').forEach((r) => r.addEventListener('change', pago));
       pago();
     }
+    // Sorteio com a Company (3.4.0): o lançamento fica em nome da Indião, sem escolher a parte (quem pagou vai na descrição).
+    const ehCompany = () => !!(App.campanha(x.form.elements.campanha.value) || {}).company;
+    const notaCompany = h('p.suave.pequeno', { style: { margin: 0 }, hidden: true }, 'Sorteio com a Company: fica em nome da ' + ind +
+      ', sem acerto entre as partes. Diga na descrição quem pagou ou recebeu (a Company ou a ' + ind + ').');
+    dica.after(notaCompany);
+    const campoParte = saida ? quem.escolha : x.form.querySelector('input[name="parte"]').closest('.campo');
+    // A data começa no sorteio da campanha antiga (até a pessoa mexer nela), para o custo não cair no mês de hoje.
+    const campoData = x.form.elements.data;
+    let dataMexida = false;
+    campoData.addEventListener('input', () => { dataMexida = true; });
+    const conferirCompany = () => {
+      const c = ehCompany();
+      const camp = App.campanha(x.form.elements.campanha.value) || {};
+      if (!dataMexida) campoData.value = chaveDia(c && lerData(camp.sorteio) ? camp.sorteio : App.hoje());
+      notaCompany.hidden = !c;
+      campoParte.hidden = c;
+      if (quem) { if (c) quem.quanto.hidden = true; else quem.atualizar(); }
+    };
+    x.form.elements.campanha.addEventListener('change', conferirCompany);
+    conferirCompany();
     x.salvar.addEventListener('click', async () => {
       const v = Comp.lerForm(x.form);
       if (!v.campanha) return TelaCaixa.erro(x.erro, 'Escolha a campanha.');
       if (!v.categoria) return TelaCaixa.erro(x.erro, 'Escolha a categoria.');
       if (!v.descricao) return TelaCaixa.erro(x.erro, 'Descreva o lançamento.');
       if (!(lerNumero(v.valor) > 0)) return TelaCaixa.erro(x.erro, 'Informe um valor maior que zero.');
-      const pagou = quem ? quem.ler() : { parte: v.parte };
+      const pagou = ehCompany() ? { parte: partes.indiao } : quem ? quem.ler() : { parte: v.parte };
       if (pagou.erro) return TelaCaixa.erro(x.erro, pagou.erro);
       let anexo;
       try { anexo = await comprovante.ler(); } catch (e) { return TelaCaixa.erro(x.erro, e.message); }
@@ -6531,7 +6840,8 @@ const TelaCaixa = {
       Comp.campo({ rotulo: 'Categoria', nome: 'categoria', tipo: 'select', valor: l.categoria, opcoes: listas.categorias }),
       Comp.campo({ rotulo: 'Valor', nome: 'valor', tipo: 'moeda', valor: l.valor }),
       Comp.campo({ rotulo: 'Data', nome: 'data', tipo: 'data', valor: l.data }),
-      Comp.campo({ rotulo: l.tipo === 'Entrada' ? 'Quem recebeu' : 'Quem pagou', nome: 'parte', tipo: 'select', valor: l.parte, opcoes: [partes.prime, partes.indiao] }),
+      (App.campanha(l.campanha) || {}).company ? null
+        : Comp.campo({ rotulo: l.tipo === 'Entrada' ? 'Quem recebeu' : 'Quem pagou', nome: 'parte', tipo: 'select', valor: l.parte, opcoes: [partes.prime, partes.indiao] }),
       Comp.campo({ rotulo: 'Situação', nome: 'status', tipo: 'select', valor: l.status,
         opcoes: [{ valor: 'Pago', rotulo: 'Pago' }, { valor: 'Comprometido', rotulo: 'A pagar (comprometido)' }] }),
       Comp.campo({ rotulo: 'Link do comprovante', nome: 'comprovante', tipo: 'url', valor: l.comprovante, opcional: true, largo: true })
@@ -6752,7 +7062,8 @@ const TelaDistribuicao = {
 
   escolherCampanha(ctx) {
     ctx.topo({ titulo: 'Distribuição', voltar: 'caixa' });
-    const lista = (App.sessao.campanhas || []).slice().sort((a, b) => (a.status === 'Encerrada' ? 0 : 1) - (b.status === 'Encerrada' ? 0 : 1));
+    // Os sorteios com a Company (3.4.0) não têm distribuição: o resultado é todo da Indião.
+    const lista = (App.sessao.campanhas || []).filter((c) => !c.company).sort((a, b) => (a.status === 'Encerrada' ? 0 : 1) - (b.status === 'Encerrada' ? 0 : 1));
     ctx.mostrar([
       h('p.suave', 'Escolha a campanha para dividir o resultado entre as partes.'),
       lista.length ? h('ul.lista', lista.map((c) => h('li.clicavel', { role: 'button', tabindex: '0',
@@ -7066,20 +7377,22 @@ const TelaVendas = {
     }
     if (!ctx.ativo()) return;
     const c = App.campanha(campanha) || { id: campanha, nome: campanha, status: '' };
+    // Sorteio com a Company (3.4.0): as vendas vieram do fechamento, sem pedidos expirados; não se atualiza pelo portal.
+    const antiga = !!c.company;
     // O código do link só para quem cadastra ou digita os totais; o sócio vê o nome.
-    const op = { campanha: campanha, ativa: c.status === 'Ativa', codigos: App.pode('afiliados.salvar') || App.pode('vendas.lancarAcumulado'),
+    const op = { campanha: campanha, ativa: c.status === 'Ativa', antiga: antiga, codigos: App.pode('afiliados.salvar') || App.pode('vendas.lancarAcumulado'),
       aoMudar: () => { App.esquecer(); TelaVendas.montar(el, campanha, ctx); } };
     const ativos = links.filter((l) => l.ativo);
 
     // Os três jeitos de atualizar, na ordem de uso: o resumo do portal todo dia; a venda de cada link pelo arquivo do portal ou, sem ele, digitada.
     const acoes = [];
-    if (App.pode('vendas.importarOverview')) {
+    if (antiga) { /* sem atualizar */ } else if (App.pode('vendas.importarOverview')) {
       acoes.push(h('button.btn.primario', { type: 'button', onclick: () => Acoes.importarVendas(campanha, { aoMudar: op.aoMudar }) }, icone('upload'), 'Enviar resumo do portal'));
     }
-    if (App.pode('vendas.importarAfiliados')) {
+    if (!antiga && App.pode('vendas.importarAfiliados')) {
       acoes.push(h('button.btn', { type: 'button', onclick: () => TelaVendas.importarLinks(c, op) }, icone('upload'), 'Enviar relatório por link'));
     }
-    if (App.pode('vendas.lancarAcumulado') && ativos.length) {
+    if (!antiga && App.pode('vendas.lancarAcumulado') && ativos.length) {
       acoes.push(h('button.btn', { type: 'button', onclick: () => TelaVendas.lancarAcumulado(c, dias, ativos, op) }, icone('vendas'), 'Digitar totais por link'));
     }
 
@@ -7113,6 +7426,17 @@ const TelaVendas = {
           : 'Nenhuma venda importada ainda. Envie o resumo do portal (pode ser o período todo).'));
     }
     const feitos = pedidos + expirados;
+    if (antiga) {
+      const media = comTotal.length ? vendido / comTotal.length : 0;
+      blocos.push(h('.kpis',
+        Comp.kpi('Vendido', F.moeda(vendido, { compacto: true }), F.plural(comTotal.length, 'dia com venda', 'dias com venda')),
+        Comp.kpi('Pedidos pagos', F.int(pedidos), pedidos ? 'tíquete médio ' + F.moeda(vendido / pedidos) : null),
+        Comp.kpi('Média por dia', F.moeda(media, { compacto: true }), 'nos dias com venda'),
+        Comp.kpi('Origem', 'Fechamento', importado ? 'importado ' + F.quando(importado) : 'da Company')));
+      blocos.push(TelaVendas.cartaoDias(dias, links, op));
+      trocar(el, blocos);
+      return;
+    }
     blocos.push(h('.kpis',
       Comp.kpi('Vendido', F.moeda(vendido, { compacto: true }), F.plural(comTotal.length, 'dia com venda', 'dias com venda')),
       Comp.kpi('Pedidos pagos', F.int(pedidos), feitos ? 'de ' + F.plural(feitos, 'pedido feito', 'pedidos feitos') : null),
@@ -7144,7 +7468,9 @@ const TelaVendas = {
       h('ul.lista.dentro', dias.map((d) => {
         const t = d.total;
         const detalhe = [];
-        if (t) detalhe.push(F.plural(t.pedidos || 0, 'pedido pago', 'pedidos pagos'), F.plural(t.expirados || 0, 'expirado', 'expirados'));
+        if (t) detalhe.push(F.plural(t.pedidos || 0, 'pedido pago', 'pedidos pagos'));
+        if (t && !op.antiga) detalhe.push(F.plural(t.expirados || 0, 'expirado', 'expirados'));
+        else if (t && t.participantes) detalhe.push(F.plural(t.participantes, 'comprador', 'compradores'));
         // O primeiro acumulado de um link traz os dias anteriores: vai à parte, e o dia fica sem a conta do sem link.
         const primeiros = d.links.filter((l) => l.primeiro).length;
         if (d.links.length > primeiros) detalhe.push('links ' + F.moeda(d.somaLinks));
@@ -7179,7 +7505,7 @@ const TelaVendas = {
       corpo.push(h('dl.valores',
         h('dt', 'Faturamento'), h('dd', F.moeda(t.faturamento)),
         h('dt', 'Pedidos pagos'), h('dd', F.int(t.pedidos)),
-        h('dt', 'Expirados'), h('dd', F.int(t.expirados)),
+        op.antiga ? null : [h('dt', 'Expirados'), h('dd', F.int(t.expirados))],
         h('dt', 'Participantes'), h('dd', F.int(t.participantes)),
         h('dt', 'Arquivo'), h('dd', t.arquivo || '–'),
         h('dt', 'Enviado por'), h('dd', [t.enviadoPor, t.importadoEm ? F.dataHora(t.importadoEm) : null].filter(Boolean).join(' · ') || '–'),
